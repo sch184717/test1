@@ -1,0 +1,17 @@
+server:
+  port: 8092    
+spring:     #定义springmvc视图解析器
+  mvc:
+    view:
+      prefix: /
+      suffix: .html
+
+#引入dubbo的配置文件
+dubbo:
+  scan:
+    basePackages: com.ttsx
+  application:
+    name: consumer-user
+  registry:
+    address: zookeeper://192.168.23.129:2181?backup=192.168.23.129:2182,192.168.23.129:2183
+  

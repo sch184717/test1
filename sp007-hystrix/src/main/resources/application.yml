@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: hystrix
+    
+server:
+  port: 3001
+  
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka1:2001/eureka, http://eureka2:2002/eureka
+#OkToRetryOnAllOperations=true
+#对连接超时、读取超时都进行重试
+#MaxAutoRetriesNextServer
+#更换实例的次数
+#MaxAutoRetries
+#当前实例重试次数，尝试失败会更换下一个实例
+
+      
+ribbon:
+  MaxAutoRetriesNextServer: 1
+  MaxAutoRetries: 1
+  OkToRetryOnAllOperations: true
+  
+#设置等待超时时间500毫秒
+  
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 2000
+            
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+  
